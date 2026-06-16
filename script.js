@@ -322,13 +322,18 @@ function loadSimpleRandomGenerateActivity() {
 // STRATIFIED RANDOM SAMPLE
 function loadStratifiedActivity() {
     clearActivity();
+
     setSpeech(
-    "In a stratified random sample, we divide the population into homogeneous strata based on an important characteristic. Here the strata are fruit types. We then perform a simple random sample within each stratum and combine the results."
-);
-  instructionBubble.textContent = "Click the dice to collect a simple random sample from each fruit group.";
+        "In a stratified random sample, we divide the farm into homogeneous strata: bananas, grapes, oranges, and strawberries. Then we run an SRS inside each stratum and combine the results."
+    );
+
+    instructionBubble.textContent = "Click the dice to randomly choose one fruit from each stratum.";
 
     addTitle("Stratified Random Sample");
-    addExplanation("Strata are homogeneous subgroups with shared characteristics: bananas, grapes, oranges, and strawberries. We randomly select within each group, then combine the results.");
+
+    addExplanation(
+        "Strata are homogeneous subgroups. Here, each fruit type is a stratum. A stratified sample helps make sure every fruit type is represented."
+    );
 
     createGroupedFarmGrid();
 
@@ -339,16 +344,19 @@ function loadStratifiedActivity() {
         const strawberry = farmLots.filter(item => item.group === "Strawberry");
 
         const sample = [
-            randomItem(bamboo),
-            randomItem(radish),
-            randomItem(carrot),
-            randomItem(wheat)
+            randomItem(banana),
+            randomItem(grape),
+            randomItem(orange),
+            randomItem(strawberry)
         ];
 
         highlightItems(sample.map(item => item.id));
 
-        setSpeech("Stratified sample selected one random item from each stratum: " +
-            sample.map(item => `#${item.id} ${item.type}`).join(", ") + ".");
+        setSpeech(
+            "Stratified sample selected: " +
+            sample.map(item => `#${item.id} ${item.type}`).join(", ") +
+            ". This combines one random choice from each fruit stratum."
+        );
     });
 
     sortingBox.appendChild(generateButton);
@@ -391,32 +399,49 @@ function loadSystematicActivity() {
 
     const interval = 4;
     const start = Math.floor(Math.random() * interval) + 1;
+
     systematicAnswer = [];
 
-    for (let id = start; systematicAnswer.length < 4; id += interval) {
-        systematicAnswer.push(((id - 1) % 17) + 1);
+    for (let id = start; id <= farmLots.length; id += interval) {
+        systematicAnswer.push(id);
     }
 
-    setSpeech(`Systematic sample: randomly start at #${start}, then select every ${interval}th item.`);
-    instructionBubble.textContent = `Click the correct items: start at #${start}, then count every ${interval}th item.`;
+    setSpeech(
+        `Systematic sample: start at #${start}, then select every ${interval}th fruit.`
+    );
+
+    instructionBubble.textContent =
+        `Click exactly these pattern positions: start at #${start}, then every ${interval}th fruit.`;
 
     addTitle("Systematic Sample");
-    addExplanation(`Random start = #${start}. Interval = ${interval}. Select every ${interval}th item.`);
+
+    addExplanation(
+        `Random start = #${start}. Interval = ${interval}. Select #${systematicAnswer.join(", #")}.`
+    );
 
     createFarmGrid(farmLots);
 
     checkButton.textContent = "Check Systematic Sample";
+
     checkButton.onclick = () => {
-        const selectedIds = selectedItems.map(item => item.id).sort((a, b) => a - b);
+        const selectedIds = selectedItems
+            .map(item => item.id)
+            .sort((a, b) => a - b);
+
         const answerIds = [...systematicAnswer].sort((a, b) => a - b);
 
         if (JSON.stringify(selectedIds) === JSON.stringify(answerIds)) {
-            setSpeech("Correct! You followed the systematic pattern.");
+            setSpeech(
+                "Correct! You chose the random starting point and then followed the every-kth-item pattern."
+            );
+
             highlightItems(systematicAnswer);
             checkButton.style.display = "none";
             addNextButton();
         } else {
-            setSpeech("Not quite. Start at the random start number, then count every 4th item.");
+            setSpeech(
+                `Not quite. You need exactly: #${answerIds.join(", #")}. Click again to select or deselect fruits.`
+            );
         }
     };
 }
@@ -484,8 +509,8 @@ function loadBiasChallenge() {
 
     createFarmGrid(farmLots);
 
-    const wheatIds = farmLots.filter(item => item.group === "Wheat").map(item => item.id);
-    highlightItems(wheatIds);
+const strawberryIds = farmLots.filter(item => item.group === "Strawberry").map(item => item.id);
+highlightItems(strawberryIds);    highlightItems(wheatIds);
 
     checkButton.textContent = "Why Is This Biased?";
     checkButton.onclick = () => {
