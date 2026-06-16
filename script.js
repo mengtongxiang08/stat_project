@@ -146,7 +146,7 @@ function addNextButton() {
     const existing = document.getElementById("next-method-button");
     if (existing) return;
 
-    const nextButton = makeButton("➡️ Continue to Next Method", "next-method-button", () => {
+    const nextButton = makeButton("Continue to Next Method", "next-method-button", () => {
         currentMethodIndex++;
 
         if (currentMethodIndex >= methods.length) {
@@ -364,7 +364,7 @@ function loadClusterActivity() {
     setSpeech("Cluster sample: randomly choose an entire cluster, then include everything inside that cluster.");
     instructionBubble.textContent = "Click the dice to randomly select one whole crop cluster.";
 
-    addTitle("🧺 Cluster Sample");
+    addTitle("Cluster Sample");
     addExplanation("Each crop type is treated as a cluster. The dice randomly chooses one cluster, and every item inside that cluster is included.");
 
     createGroupedFarmGrid();
@@ -400,7 +400,7 @@ function loadSystematicActivity() {
     setSpeech(`Systematic sample: randomly start at #${start}, then select every ${interval}th item.`);
     instructionBubble.textContent = `Click the correct items: start at #${start}, then count every ${interval}th item.`;
 
-    addTitle("🔢 Systematic Sample");
+    addTitle("Systematic Sample");
     addExplanation(`Random start = #${start}. Interval = ${interval}. Select every ${interval}th item.`);
 
     createFarmGrid(farmLots);
@@ -428,7 +428,7 @@ function loadMultistageActivity() {
     setSpeech("Multistage sample: first randomly choose a cluster, then randomly sample inside that cluster.");
     instructionBubble.textContent = "Click the dice for stage 1. Then click again for stage 2.";
 
-    addTitle("🎯 Multistage Sample");
+    addTitle("Multistage Sample");
     addExplanation("Stage 1: randomly choose a crop group. Stage 2: randomly choose items inside that group.");
 
     createGroupedFarmGrid();
@@ -492,7 +492,7 @@ function loadBiasChallenge() {
         setSpeech("This sample is biased because it only includes wheat lots. If our goal is to estimate the quality of the entire farm, bamboo shoots, radishes, and carrots are completely excluded, making the sample unrepresentative of the population.");
         checkButton.style.display = "none";
 
-        const restartButton = makeButton("🔁 Review From Beginning", "next-method-button", () => {
+        const restartButton = makeButton("Review From Beginning", "next-method-button", () => {
             currentMethodIndex = 0;
             loadSimpleRandomDragActivity();
         });
