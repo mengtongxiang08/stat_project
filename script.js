@@ -204,7 +204,7 @@ function loadSimpleRandomDragActivity() {
         },
         {
             step: 4,
-            text: "Match each selected number to its bamboo shoot, radish, carrot, or wheat lot."
+            text: "Match each selected number to its corresponding banana, strawberry, grape, or orange."
         },
         {
             step: 5,
