@@ -323,9 +323,9 @@ function loadSimpleRandomGenerateActivity() {
 function loadStratifiedActivity() {
     clearActivity();
     setSpeech(
-    "In a stratified random sample, we divide the population into homogeneous strata based on an important characteristic. Here the strata are crop types. We then perform a simple random sample within each stratum and combine the results."
+    "In a stratified random sample, we divide the population into homogeneous strata based on an important characteristic. Here the strata are fruit types. We then perform a simple random sample within each stratum and combine the results."
 );
-  instructionBubble.textContent = "Click the dice to collect a simple random sample from each crop group.";
+  instructionBubble.textContent = "Click the dice to collect a simple random sample from each fruit group.";
 
     addTitle("Stratified Random Sample");
     addExplanation("Strata are homogeneous subgroups with shared characteristics: bananas, grapes, oranges, and strawberries. We randomly select within each group, then combine the results.");
@@ -333,10 +333,10 @@ function loadStratifiedActivity() {
     createGroupedFarmGrid();
 
     const generateButton = makeButton("🎲 Run SRS in Each Stratum", "sample-button", () => {
-        const bamboo = farmLots.filter(item => item.group === "Bamboo");
-        const radish = farmLots.filter(item => item.group === "Radish");
-        const carrot = farmLots.filter(item => item.group === "Carrot");
-        const wheat = farmLots.filter(item => item.group === "Wheat");
+        const banana = farmLots.filter(item => item.group === "Banana");
+        const grape = farmLots.filter(item => item.group === "Grape");
+        const orange = farmLots.filter(item => item.group === "Orange");
+        const strawberry = farmLots.filter(item => item.group === "Strawberry");
 
         const sample = [
             randomItem(bamboo),
