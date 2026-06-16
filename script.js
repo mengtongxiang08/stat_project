@@ -497,24 +497,41 @@ function loadMultistageActivity() {
     checkButton.style.display = "none";
 }
 
-// BIAS CHALLENGE
-function loadBiasChallenge() {
+// BIAS CHALLENGEfunction loadBiasChallenge() {
     clearActivity();
 
-    setSpeech("Bias challenge: this sample only uses strawberry lots. Is that representative of the whole farm?");
-    instructionBubble.textContent = "Click the biased items, then check why the sample is bad.";
+    setSpeech(
+        "Bias challenge: this sample only uses strawberries. Is that representative of the whole farm?"
+    );
+
+    instructionBubble.textContent =
+        "Look at the highlighted sample, then click the button to explain the bias.";
 
     addTitle("Bias Challenge!");
-    addExplanation("A sample can be random-looking but still biased if it overrepresents one part of the population.");
+
+    addExplanation(
+        "Suppose Angela wants to estimate the quality of the entire farm. This sample only includes strawberries, so it may not represent bananas, grapes, or oranges."
+    );
 
     createFarmGrid(farmLots);
 
-const strawberryIds = farmLots.filter(item => item.group === "Strawberry").map(item => item.id);
-highlightItems(strawberryIds);    highlightItems(wheatIds);
+    const strawberryIds = farmLots
+        .filter(item => item.group === "Strawberry")
+        .map(item => item.id);
 
-    checkButton.textContent = "Why Is This Biased?";
+    highlightItems(strawberryIds);
+
+    checkButton.style.display = "block";
+    checkButton.textContent = "Explain the Bias";
+
     checkButton.onclick = () => {
-        setSpeech("This sample is biased because it only includes strawberry lots. If our goal is to estimate the quality of the entire farm, banana, grapes, and oranges are completely excluded, making the sample unrepresentative of the population.");
+        setSpeech(
+            "This sample is biased because it only includes strawberries. Since the goal is to estimate the quality of the entire farm, excluding bananas, grapes, and oranges makes the sample unrepresentative."
+        );
+
+        instructionBubble.textContent =
+            "A representative sample should reflect the whole population, not just one fruit group.";
+
         checkButton.style.display = "none";
 
         const restartButton = makeButton("Review From Beginning", "next-method-button", () => {
