@@ -780,3 +780,15 @@
 
     background-repeat: no-repeat;
 }
+.crop-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 3px auto;
+    image-rendering: pixelated;
+}
+
+.crop-card span {
+    display: block;
+}
