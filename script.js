@@ -56,7 +56,7 @@ if (checkButton) checkButton.style.display = "none";
 // INTRO
 const dialogueSequence = [
     "Quack! Welcome to Statistics Farm!",
-    "I'm Angela the duck, and today our farm has 17 total plants and lots.",
+    "I'm Angela the duck, and today our farm has 17 total fruits.",
     "There are 6 bananas, 4 grapes, 2 oranges, and 5 strawberries.",
     "Let's learn sampling methods by actually sampling the farm!"
 ];
@@ -200,7 +200,7 @@ function loadSimpleRandomDragActivity() {
         },
         {
             step: 3,
-            text: "Ignore repeated numbers so the same plant or lot cannot be chosen twice."
+            text: "Ignore repeated numbers so the same fruit cannot be chosen twice."
         },
         {
             step: 4,
@@ -208,7 +208,7 @@ function loadSimpleRandomDragActivity() {
         },
         {
             step: 5,
-            text: "Use those selected plants and lots as the simple random sample."
+            text: "Use those selected fruits as the simple random sample."
         }
     ];
 
@@ -300,7 +300,7 @@ function loadSimpleRandomGenerateActivity() {
     clearActivity();
 
     setSpeech("SRS: every numbered item has the same chance of being picked.");
-    instructionBubble.textContent = "Click the dice to randomly select 4 of the 17 numbered plants/lots.";
+    instructionBubble.textContent = "Click the dice to randomly select 4 of the 17 numbered fruits.";
 
     addTitle("🎲 Simple Random Sample");
     addExplanation("All 17 items are placed into one big population. The dice randomly chooses 4 unique numbers.");
@@ -476,7 +476,7 @@ function loadMultistageActivity() {
 function loadBiasChallenge() {
     clearActivity();
 
-    setSpeech("Bias challenge: this sample only uses wheat lots. Is that representative of the whole farm?");
+    setSpeech("Bias challenge: this sample only uses strawberry lots. Is that representative of the whole farm?");
     instructionBubble.textContent = "Click the biased items, then check why the sample is bad.";
 
     addTitle("Bias Challenge!");
@@ -489,7 +489,7 @@ function loadBiasChallenge() {
 
     checkButton.textContent = "Why Is This Biased?";
     checkButton.onclick = () => {
-        setSpeech("This sample is biased because it only includes wheat lots. If our goal is to estimate the quality of the entire farm, bamboo shoots, radishes, and carrots are completely excluded, making the sample unrepresentative of the population.");
+        setSpeech("This sample is biased because it only includes strawberry lots. If our goal is to estimate the quality of the entire farm, banana, grapes, and oranges are completely excluded, making the sample unrepresentative of the population.");
         checkButton.style.display = "none";
 
         const restartButton = makeButton("Review From Beginning", "next-method-button", () => {
