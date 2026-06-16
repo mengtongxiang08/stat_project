@@ -12,26 +12,26 @@ const checkButton = document.getElementById("check-button");
 
 // FARM POPULATION
 const farmLots = [
-    { id: 1, type: "Bamboo Shoot", emoji: "🎋", group: "Bamboo" },
-    { id: 2, type: "Bamboo Shoot", emoji: "🎋", group: "Bamboo" },
-    { id: 3, type: "Bamboo Shoot", emoji: "🎋", group: "Bamboo" },
-    { id: 4, type: "Bamboo Shoot", emoji: "🎋", group: "Bamboo" },
-    { id: 5, type: "Bamboo Shoot", emoji: "🎋", group: "Bamboo" },
-    { id: 6, type: "Bamboo Shoot", emoji: "🎋", group: "Bamboo" },
+    { id: 1, type: "Banana", img: "assets/banana.png", group: "Banana" },
+    { id: 2, type: "Banana", img: "assets/banana.png", group: "Banana" },
+    { id: 3, type: "Banana", img: "assets/banana.png", group: "Banana" },
+    { id: 4, type: "Banana", img: "assets/banana.png", group: "Banana" },
+    { id: 5, type: "Banana", img: "assets/banana.png", group: "Banana" },
+    { id: 6, type: "Banana", img: "assets/banana.png", group: "Banana" },
 
-    { id: 7, type: "Radish", emoji: "🥬", group: "Radish" },
-    { id: 8, type: "Radish", emoji: "🥬", group: "Radish" },
-    { id: 9, type: "Radish", emoji: "🥬", group: "Radish" },
-    { id: 10, type: "Radish", emoji: "🥬", group: "Radish" },
+    { id: 7, type: "Grape", img: "assets/grape.png", group: "Grape" },
+    { id: 8, type: "Grape", img: "assets/grape.png", group: "Grape" },
+    { id: 9, type: "Grape", img: "assets/grape.png", group: "Grape" },
+    { id: 10, type: "Grape", img: "assets/grape.png", group: "Grape" },
 
-    { id: 11, type: "Carrot", emoji: "🥕", group: "Carrot" },
-    { id: 12, type: "Carrot", emoji: "🥕", group: "Carrot" },
+    { id: 11, type: "Orange", img: "assets/orange.png", group: "Orange" },
+    { id: 12, type: "Orange", img: "assets/orange.png", group: "Orange" },
 
-    { id: 13, type: "Wheat Lot", emoji: "🌾", group: "Wheat" },
-    { id: 14, type: "Wheat Lot", emoji: "🌾", group: "Wheat" },
-    { id: 15, type: "Wheat Lot", emoji: "🌾", group: "Wheat" },
-    { id: 16, type: "Wheat Lot", emoji: "🌾", group: "Wheat" },
-    { id: 17, type: "Wheat Lot", emoji: "🌾", group: "Wheat" }
+    { id: 13, type: "Strawberry", img: "assets/strawberry.png", group: "Strawberry" },
+    { id: 14, type: "Strawberry", img: "assets/strawberry.png", group: "Strawberry" },
+    { id: 15, type: "Strawberry", img: "assets/strawberry.png", group: "Strawberry" },
+    { id: 16, type: "Strawberry", img: "assets/strawberry.png", group: "Strawberry" },
+    { id: 17, type: "Strawberry", img: "assets/strawberry.png", group: "Strawberry" }
 ];
 
 const methods = [
@@ -57,7 +57,7 @@ if (checkButton) checkButton.style.display = "none";
 const dialogueSequence = [
     "Quack! Welcome to Statistics Farm!",
     "I'm Angela the duck, and today our farm has 17 total plants and lots.",
-    "There are 6 bamboo shoots, 4 radishes, 2 carrots, and 5 wheat lots.",
+    "There are 6 bananas, 4 grapes, 2 oranges, and 5 strawberries.",
     "Let's learn sampling methods by actually sampling the farm!"
 ];
 
@@ -192,7 +192,7 @@ function loadSimpleRandomDragActivity() {
     const steps = [
         {
             step: 1,
-            text: "Label the 6 bamboo shoots, 4 radishes, 2 carrots, and 5 wheat lots with numbers 1 through 17."
+            text: "Label the 6 bananas, 4 grapes, 2 oranges, and 5 strawberries with numbers 1 through 17."
         },
         {
             step: 2,
@@ -328,7 +328,7 @@ function loadStratifiedActivity() {
   instructionBubble.textContent = "Click the dice to collect a simple random sample from each crop group.";
 
     addTitle("Stratified Random Sample");
-    addExplanation("Strata are homogenous subgroups with shared characteristic(s): bamboo, radish, carrot, and wheat. We randomly select within each group, then combine the results.");
+    addExplanation("Strata are homogeneous subgroups with shared characteristics: bananas, grapes, oranges, and strawberries. We randomly select within each group, then combine the results.");
 
     createGroupedFarmGrid();
 
@@ -370,7 +370,7 @@ function loadClusterActivity() {
     createGroupedFarmGrid();
 
     const generateButton = makeButton("🎲 Randomly Choose a Cluster", "sample-button", () => {
-        const groups = ["Bamboo", "Radish", "Carrot", "Wheat"];
+        const groups = ["Banana", "Grape", "Orange", "Strawberry"];
         const chosenGroup = randomItem(groups);
         const clusterItems = farmLots.filter(item => item.group === chosenGroup);
 
@@ -436,7 +436,7 @@ function loadMultistageActivity() {
     let chosenGroup = null;
 
     const stageOneButton = makeButton("🎲 Stage 1: Choose Group", "sample-button", () => {
-        const groups = ["Bamboo", "Radish", "Carrot", "Wheat"];
+        const groups = ["Banana", "Grape", "Orange", "Strawberry"];
         chosenGroup = randomItem(groups);
         const groupItems = farmLots.filter(item => item.group === chosenGroup);
 
@@ -511,7 +511,7 @@ function createFarmGrid(items) {
         card.className = "crop-card";
         card.dataset.id = item.id;
         card.dataset.group = item.group;
-        card.textContent = `${item.emoji} #${item.id}`;
+        card.innerHTML = `<img src="${item.img}" class="crop-img" alt="${item.type}"><span>#${item.id}</span>`;
 
         card.addEventListener("click", () => {
             toggleCropSelection(card, item);
@@ -525,10 +525,10 @@ function createFarmGrid(items) {
 
 function createGroupedFarmGrid() {
     const groups = [
-        { name: "Bamboo Stratum", group: "Bamboo" },
-        { name: "Radish Stratum", group: "Radish" },
-        { name: "Carrot Stratum", group: "Carrot" },
-        { name: "Wheat Stratum", group: "Wheat" }
+    { name: "Banana Stratum", group: "Banana" },
+    { name: "Grape Stratum", group: "Grape" },
+    { name: "Orange Stratum", group: "Orange" },
+    { name: "Strawberry Stratum", group: "Strawberry" }
     ];
 
     groups.forEach(groupObj => {
@@ -549,7 +549,7 @@ function createGroupedFarmGrid() {
                 card.className = "crop-card";
                 card.dataset.id = item.id;
                 card.dataset.group = item.group;
-                card.textContent = `${item.emoji} #${item.id}`;
+                card.innerHTML = `<img src="${item.img}" class="crop-img" alt="${item.type}"><span>#${item.id}</span>`;
 
                 card.addEventListener("click", () => {
                     toggleCropSelection(card, item);
