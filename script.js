@@ -497,7 +497,8 @@ function loadMultistageActivity() {
     checkButton.style.display = "none";
 }
 
-// BIAS CHALLENGEfunction loadBiasChallenge() {
+// BIAS CHALLENGE
+function loadBiasChallenge() {
     clearActivity();
 
     setSpeech(
