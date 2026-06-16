@@ -248,7 +248,7 @@ function loadSimpleRandomDragActivity() {
                 item.style.cursor = "default";
             });
 
-            const generateButton = makeButton("🎲 Generate Simple Random Sample", "sample-button", loadSimpleRandomGenerateActivity);
+            const generateButton = makeButton("Generate Simple Random Sample", "sample-button", loadSimpleRandomGenerateActivity);
             sortingBox.appendChild(generateButton);
         } else {
             setSpeech("Not quite. Try dragging the steps into the correct order.");
