@@ -412,7 +412,10 @@
   #check-button:hover {
     transform: scale(1.03);
   }
-  
+  #check-button {
+    -webkit-app-region: no-drag;
+    cursor: pointer;
+} 
   .sortable-item.correct {
     background: rgba(144, 238, 144, 0.85) !important;
     border-color: #2e7d32 !important;
